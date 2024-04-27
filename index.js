@@ -1,37 +1,35 @@
-class ShowArea {
-    constructor() {
-        this.dropzone = document.getElementById('dropzone');
-        this.dropzone.addEventListener('dragover', this.handleDragOver.bind(this));
-        this.dropzone.addEventListener('drop', this.handleDrop.bind(this));
-    }
+// Get all draggable elements
+const draggables = document.querySelectorAll(".list-group-item");
 
-    handleDragOver(event) {
-        event.preventDefault();
-        this.dropzone.classList.add('dragover');
-    }
+// Get all drop areas
+const dropAreas = document.querySelectorAll(".slot, .dropzone");
 
-    handleDrop(event) {
-        event.preventDefault();
-        this.dropzone.classList.remove('dragover');
-        const files = event.dataTransfer.files;
-        // Hier können Sie den Code zum Verarbeiten der hochgeladenen Dateien hinzufügen
-    }
+// Add event listeners for drag and drop events
+for (const draggable of draggables) {
+    draggable.addEventListener("dragstart", (event) => {
+        // Store the ID of the dragged element
+        event.dataTransfer.setData("text/plain", event.target.id);
+    });
 }
 
-class ComponentsList {
-    constructor() {
-        this.list = document.getElementById('components-list');
-    }
+for (const dropArea of dropAreas) {
+    dropArea.addEventListener("dragover", (event) => {
+        event.preventDefault();
+    });
 
-    addComponent(componentName) {
-        const listItem = document.createElement('li');
-        listItem.textContent = componentName;
-        this.list.appendChild(listItem);
-    }
+    dropArea.addEventListener("drop", (event) => {
+        // Prevent default action
+        event.preventDefault();
+
+        // Get the ID of the dragged element
+        const draggedElementId = event.dataTransfer.getData("text/plain");
+
+        // Get the dragged element
+        const draggedElement = document.getElementById(draggedElementId);
+
+        // Append the dragged element to the drop area
+        dropArea.appendChild(draggedElement);
+    });
 }
 
-const showArea = new ShowArea();
-const componentsList = new ComponentsList();
 
-// Beispiel für das Hinzufügen eines Komponentennamens zur Liste
-componentsList.addComponent('Komponente 1');
