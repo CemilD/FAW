@@ -1,13 +1,9 @@
-.sapUiIcon{
-    font-family: SAP-icons; 
-    font-size: 2rem;
-    margin-top: 5px;
-    margin-left: 5px;
-    margin-right: 5px;
-    color: white;
-    
+.navBar{
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.712);
 }
-
 
 .componentslist > div {
     background-color: rgb(230, 243, 255);
@@ -26,3 +22,14 @@
     margin-right: 10px;
   }
 
+  /* SAP Icons */
+.icon-home{
+  margin: 10px;
+  font-family: "SAP-icons";
+  font-size: 2rem;
+}
+
+.file span::before{
+  margin: 5px;
+  content: "\e1c9";
+}

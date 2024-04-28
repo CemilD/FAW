@@ -32,4 +32,3 @@ for (const dropArea of dropAreas) {
     });
 }
 
-
